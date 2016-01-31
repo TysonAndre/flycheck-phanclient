@@ -1,0 +1,61 @@
+#+TITLE: Phan for Emacs
+
+* Description
+
+  This package brings the support of [[https://github.com/etsy/phan][phan]], the PHP static analyzer, to Emacs.
+
+  This is an early version with very few features.
+
+* Installation
+
+  Clone this repository to your computer. Then, load it in your Emacs configuration :
+
+  #+BEGIN_SRC emacs-lisp
+    (add-to-list 'load-path "/path/to/to/emacs-phan")
+    (require 'phan)
+  #+END_SRC
+
+* Usage
+
+** Compilation mode
+
+   The main function of this package runs phan against a directory, and
+   returns all the results in a compilation buffer.
+
+   Type ~M-x phan-run-on-directory RET /directory/to/check RET~ to use it.
+
+** Flycheck checker
+
+   This is more an experiment than a production feature. Flycheck should
+   not be used to perform such heavy tasks.
+
+   First, load the flycheck checker:
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'flycheck-phan)
+   #+END_SRC
+
+   Then, declare the variable ~phan-flycheck-directory~ in a
+   ~.dir-locals.el~ file in your project so that the checker is able to
+   know which sources should be analyzed:
+
+   #+BEGIN_SRC emacs-lisp
+     ((php-mode . ((phan-flycheck-directory . "/path/to/your/sources"))))
+   #+END_SRC
+
+   This should be enough to have the flycheck checker run on your project.
+
+* Configuration
+
+   By default, this package will use ~git~ and ~composer~ to install a local phan version.
+
+   If you prefer to install and manage phan by yourself, just install
+   phan anywhere in your computer and customize the variable
+   ~phan-program-location~ to set the path to your phan executable.
+
+   Type ~M-x customize-group RET phan RET~ to see the other customization options.
+
+* Requirements
+
+  - PHP 7 with the [[https://github.com/nikic/php-ast][php-ast extension]] installed
+  - git
