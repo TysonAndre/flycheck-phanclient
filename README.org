@@ -1,61 +1,64 @@
-#+TITLE: Phan for Emacs
+#+TITLE: Phan client for Emacs
 
 * Description
 
-  This package brings the support of [[https://github.com/etsy/phan][phan]], the PHP static analyzer, to Emacs.
+  This package adds support of [[https://github.com/etsy/phan][phan]], the PHP static analyzer, to Emacs (as a flycheck plugin).
+  The main feature is quick analysis of individual php files in a project, with the assistance of a background phan daemon.
 
   This is an early version with very few features.
+
+  This is based on https://github.com/stevenremot/emacs-phan
 
 * Installation
 
   Clone this repository to your computer. Then, load it in your Emacs configuration :
 
   #+BEGIN_SRC emacs-lisp
-    (add-to-list 'load-path "/path/to/to/emacs-phan")
-    (require 'phan)
+    (add-to-list 'load-path "/path/to/to/flycheck-phanclient")
+    (require 'flycheck-phanclient)
   #+END_SRC
 
 * Usage
 
 ** Compilation mode
 
-   The main function of this package runs phan against a directory, and
-   returns all the results in a compilation buffer.
-
-   Type ~M-x phan-run-on-directory RET /directory/to/check RET~ to use it.
+   See the Flycheck checker section.
+   TODO: re-enable running phan against a directory
 
 ** Flycheck checker
 
-   This is more an experiment than a production feature. Flycheck should
-   not be used to perform such heavy tasks.
+   This is more an experiment than a production feature. 
+   Flycheck should not be used to perform such heavy tasks.
+   The request frequency likely needs to be tuned.
 
    First, load the flycheck checker:
 
    #+BEGIN_SRC emacs-lisp
-     (require 'flycheck-phan)
+     (require 'flycheck-phanclient)
    #+END_SRC
+   
+   Then, start the daemon in the folder to analyze, with the default port of 8486 (see https://github.com/etsy/phan/pull/563)
 
-   Then, declare the variable ~phan-flycheck-directory~ in a
-   ~.dir-locals.el~ file in your project so that the checker is able to
-   know which sources should be analyzed:
-
-   #+BEGIN_SRC emacs-lisp
-     ((php-mode . ((phan-flycheck-directory . "/path/to/your/sources"))))
-   #+END_SRC
+   TODO: add a way to configure individual project settings
+   (e.g. ~.dir-locals.el~)
 
    This should be enough to have the flycheck checker run on your project.
 
 * Configuration
 
-   By default, this package will use ~git~ and ~composer~ to install a local phan version.
+   You need to install phan manually, and use a git branch with the phan daemon installed.
+   Ensure that the PHP program ~phan_client~ is in your path, or copied to a folder in your $PATH.
 
-   If you prefer to install and manage phan by yourself, just install
-   phan anywhere in your computer and customize the variable
-   ~phan-program-location~ to set the path to your phan executable.
+   Currently, the phan daemon must be started manually on the directory
+   (must have ~.phan/config.php~ somewhere in the folder or parent folders).
+   No warning/notice is currently emitted if the daemon is not running.
 
-   Type ~M-x customize-group RET phan RET~ to see the other customization options.
+   Type ~M-x customize-group RET phanclient RET~ to see the other customization options.
+   More customization options will be added in the future.
 
 * Requirements
 
-  - PHP 7 with the [[https://github.com/nikic/php-ast][php-ast extension]] installed
-  - git
+  - PHP 7.1 with the [[https://github.com/nikic/php-ast][php-ast extension]] installed
+    (daemon is not backported to PHP 7.0)
+  - A running phan daemon
+  - A phan installation including [[https://github.com/etsy/phan/pull/563][support for the phan daemon mode]]
