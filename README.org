@@ -63,5 +63,6 @@
 
   - PHP 7.1 with the [[https://github.com/nikic/php-ast][php-ast extension]] installed
     (daemon is not backported to PHP 7.0)
-  - A running phan daemon
+  - A php project with ~.phan/config.php` set up. See [[https://github.com/etsy/phan#getting-started][Phan - Getting Started]]
+  - A phan daemon running in that project folder.
   - A phan installation including [[https://github.com/etsy/phan/pull/563][support for the phan daemon mode]]
