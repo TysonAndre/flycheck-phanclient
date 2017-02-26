@@ -18,7 +18,7 @@ See URL `https://github.com/etsy/phan'."
 Can be a string, or the symbol `local' to use a version local to
 the Emacs package.
 
-If it is `local', it is necesary to have `git' installed on the
+If it is `local', it is necessary to have `git' installed on the
 computer to clone the phan repository and update it."
   :type '(choice (const :tag "Use local phan installation" local)
                  (string :tag "Specify a custom phan location"))
@@ -35,7 +35,7 @@ computer to clone the phan repository and update it."
   :group 'phan)
 
 (defcustom phan-composer-program-url "https://getcomposer.org/installer"
-  "URL to the composer installator."
+  "URL to the composer installer."
   :type '(string)
   :group 'phan)
 
@@ -67,7 +67,7 @@ been cloned."
     (phan-clone-local-phan)))
 
 (defun phan-install-composer ()
-  "Install composer in the  phan program directory."
+  "Install composer in the phan program directory."
   (let ((default-directory phan-local-phan-dir))
        (url-copy-file phan-composer-program-url (expand-file-name "installer" phan-local-phan-dir) t)
        (call-process phan-php-command nil " *PHAN: install composer*" nil "installer")
@@ -124,7 +124,7 @@ local phan program."
 ;;;###autoload
 (defun phan-run-on-directory (directory)
   "Run phan analysis on the specified directory."
-  (interactive "DDirectory to scan: ")
+  (interactive "Directory to scan: ")
   (let ((directory (expand-file-name directory))
         (program (phan-get-phan-program))
         (default-directory (or (locate-dominating-file (expand-file-name "false-file" directory) ".phan")

@@ -11,10 +11,10 @@
 (require 'phan)
 
 (defvar phan-flycheck-directory ""
-  "The direcotry to use to run PHAN in flycheck.")
+  "The directory to use to run PHAN in flycheck.")
 
 (flycheck-define-checker php-phan
-  "A PHP statical analyzer using phan.
+  "A PHP static analyzer using phan.
 
 See URL `https://github.com/etsy/phan'."
   :command ("php" (eval (phan-get-phan-program)) "--directory" (eval phan-flycheck-directory))
