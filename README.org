@@ -9,6 +9,9 @@
 
   This is based on https://github.com/stevenremot/emacs-phan
 
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+[[./docs/flycheck_phan_example.png]]
+
 * Installation
 
   Clone this repository to your computer. Then, load it in your Emacs configuration :
