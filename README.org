@@ -2,7 +2,7 @@
 
 * Description
 
-  This package adds support of [[https://github.com/etsy/phan][phan]], the PHP static analyzer, to Emacs (as a flycheck plugin).
+  This package adds support of [[https://github.com/TysonAndre/phan][phan (Currently requires a fork)]], the PHP static analyzer, to Emacs (as a flycheck plugin).
   The main feature is quick analysis of individual php files in a project, with the assistance of a background phan daemon.
 
   This is an early version with very few features.
@@ -59,4 +59,6 @@
     (daemon is not backported to PHP 7.0)
   - A php project with ~.phan/config.php` set up. See [[https://github.com/etsy/phan#getting-started][Phan - Getting Started]]
   - A phan daemon running in that project folder.
-  - A phan installation including [[https://github.com/etsy/phan/pull/563][support for the phan daemon mode]]
+  - A [[https://github.com/TysonAndre/phan][phan]] installation including [[https://github.com/etsy/phan/pull/563][support for the phan daemon mode]]
+    and [[https://github.com/TysonAndre/phan/pull/24][support for sending unsaved file contents to the phan daemon]].
+    The changes haven't been merged to upstream yet.
