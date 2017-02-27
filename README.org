@@ -23,16 +23,7 @@
 
 * Usage
 
-** Compilation mode
-
-   See the Flycheck checker section.
-   TODO: re-enable running phan against a directory
-
 ** Flycheck checker
-
-   This is more an experiment than a production feature. 
-   Flycheck should not be used to perform such heavy tasks.
-   The request frequency likely needs to be tuned.
 
    First, load the flycheck checker:
 
@@ -46,6 +37,9 @@
    (e.g. ~.dir-locals.el~)
 
    This should be enough to have the flycheck checker run on your project.
+   This will run while the project is being edited, even without saving the file.
+
+   Note: The request frequency may still need to be tuned for larger projects.
 
 * Configuration
 
