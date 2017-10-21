@@ -2,7 +2,7 @@
 
 * Description
 
-  This package adds support of [[https://github.com/etsy/phan][phan (0.9.2+/0.8.4+)]], the PHP static analyzer, to Emacs (as a flycheck plugin).
+  This package adds support of [[https://github.com/etsy/phan][phan (0.10.0+/0.8.4+)]], the PHP static analyzer, to Emacs (as a flycheck plugin).
   The main feature is quick analysis of individual php files in a project, with the assistance of a background phan daemon.
 
   This is an early version with very few features.
@@ -44,7 +44,7 @@
 * Configuration
 
    You need to install phan manually, and use a git branch with the phan daemon installed.
-   Ensure that the PHP program ~phan_client~ is in your path, or copied to a folder in your $PATH.
+   Ensure that the PHP program ~phan_client~ is in your path, or copied to a folder in your ~$PATH~.
 
    Currently, the phan daemon must be started manually on the directory
    (must have ~.phan/config.php~ somewhere in the folder or parent folders).
@@ -56,7 +56,12 @@
 * Requirements
 
   - PHP 7.0/7.1 with the [[https://github.com/nikic/php-ast][php-ast extension]] installed.
-  - A php project with ~.phan/config.php` set up. See [[https://github.com/etsy/phan#getting-started][Phan - Getting Started]]
-  - A phan daemon running in that project folder.
+  - A PHP project with ~.phan/config.php~ set up. See [[https://github.com/etsy/phan#getting-started][Phan - Getting Started]]
+  - A Phan daemon running in the project folder being opened by Emacs.
   - A [[https://github.com/etsy/phan][phan]] installation including [[https://github.com/etsy/phan/pull/563][support for the phan daemon mode]].
-    The changes are available in the 0.8.4+/0.9.2+ releases of Phan.
+    The changes are available in the 0.8.4+/0.10.0+ releases of Phan.
+    
+* Future Work
+
+  Create a plugin using the Language Server Protocol for the Emacs client (instead of the Phan-specific daemon mode).
+
