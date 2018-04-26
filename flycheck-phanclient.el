@@ -7,9 +7,17 @@
 
 ;;; Code:
 (require 'flycheck)
+(require 'php-project)
 
 ;; TODO: Use phan's severity level to choose between warning and info. Include that in the lines printed by phan_client.
 ;; TODO: Allow users to override the information included in message?
+
+(defun flycheck-phanclient-start-daemon ()
+  "Start the phan daemon"
+  (interactive)
+  (let ((default-directory (php-project-get-root-dir))
+        (cmd '("phan" "--daemonize-tcp-port" "4846" "--quick")))
+    (apply #'start-process "PhanDaemon" "*phan daemon*" cmd)))
 
 (flycheck-define-checker php-phanclient
   "A PHP static analyzer using phan. Analyzes the file on buffer save.
