@@ -14,6 +14,11 @@
 
 (defvar flycheck-phanclient--phan-executable nil)
 
+;; This will search for "phan" in the following places:
+;;
+;; 1. If the value of flycheck-phanclient--phan-executable is not nil, use that
+;; 2. vendor/bin/phan relative to composer.json in an ancestor directory
+;; 3. Search for a separate phan executable or phar file in the executable path
 (defun flycheck-phanclient-start-daemon ()
   "Start the phan daemon"
   (interactive)
@@ -28,7 +33,7 @@
 (flycheck-define-checker php-phanclient
   "A PHP static analyzer using phan. Analyzes the file on buffer save.
 
-See URL `https://github.com/etsy/phan'."
+See URL `https://github.com/phan/phan'."
   :command ("phan_client" "-l" source-original "-f" source)
 ;; Alternately, use the below :command with the commented out :predicate to only run the check after file save.
 ;; :command ("phan_client" "-l" source-original)
