@@ -2,7 +2,7 @@
 
 * Description
 
-  This package adds support of [[https://github.com/etsy/phan][phan (0.10.0+/0.8.4+)]], the PHP static analyzer, to Emacs (as a flycheck plugin).
+  This package adds support of [[https://github.com/phan/phan][phan (0.12.0+)]], the PHP static analyzer, to Emacs (as a flycheck plugin).
   The main feature is quick analysis of individual php files in a project, with the assistance of a background phan daemon.
 
   This is an early version with very few features.
@@ -30,8 +30,8 @@
    #+BEGIN_SRC emacs-lisp
      (require 'flycheck-phanclient)
    #+END_SRC
-   
-   Then, start the daemon in the folder to analyze, with the default port of 8486 (see https://github.com/etsy/phan/pull/563)
+
+   Then, start the daemon in the folder to analyze, with the default port of 8486 (see https://github.com/phan/phan/pull/563)
 
    TODO: add a way to configure individual project settings
    (e.g. ~.dir-locals.el~)
@@ -55,13 +55,18 @@
 
 * Requirements
 
-  - PHP 7.0/7.1 with the [[https://github.com/nikic/php-ast][php-ast extension]] installed.
-  - A PHP project with ~.phan/config.php~ set up. See [[https://github.com/etsy/phan#getting-started][Phan - Getting Started]]
+  - PHP 7.x with the [[https://github.com/nikic/php-ast][php-ast extension]] installed (and in the PATH emacs searches for binaries).
+  - A PHP project with ~.phan/config.php~ set up. See [[https://github.com/phan/phan#getting-started][Phan - Getting Started]]
   - A Phan daemon running in the project folder being opened by Emacs.
-  - A [[https://github.com/etsy/phan][phan]] installation including [[https://github.com/etsy/phan/pull/563][support for the phan daemon mode]].
-    The changes are available in the 0.8.4+/0.10.0+ releases of Phan.
-    
+  - A Phan 0.12.0+ installation.
+
+* Emacs dependencies
+
+  - Flycheck must know that the current file's file type is PHP.
+
+    E.g. by using [[https://github.com/ejmr/php-mode#installation]][[~php-mode~]] from MELPA
+  - [[http://www.flycheck.org/en/latest/user/installation.html#package-installation]][[Flycheck]]
+
 * Future Work
 
   Create a plugin using the Language Server Protocol for the Emacs client (instead of the Phan-specific daemon mode).
-
